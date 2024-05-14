@@ -1,0 +1,27 @@
+<launch>
+
+    <arg name="gui" default="false"/>
+
+    <include file="$(find mirte_gazebo)/launch/lab4_simulation_barrel_world.launch">
+    	<arg name="gui" default="$(arg gui)"/>
+    </include>
+
+    <node
+	pkg="opencv_person_detector"
+	type="opencv_person_detector_node"
+	name="opencv_person_detector_node"
+	output="screen"
+    ></node>
+
+    <node
+	pkg="control_barrel_world"
+	type="control_barrel_world_node"
+	name="control_barrel_world_node"
+	output="screen"
+    ></node>
+
+    <param name="linear_velocity_forward" value="0.8" />
+    <param name="linear_velocity_steering" value="0.6" />
+    <param name="angular_velocity_steering" value="0.4" />
+
+</launch>
